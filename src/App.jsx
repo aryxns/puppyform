@@ -24,17 +24,24 @@ const App = () => {
   }
   return(
     <div className="m-10">
-    <h1 className="text-2xl font-bold grid justify-items-center">Puppy - New Product Details</h1>
-    <div className="mt-5 grid justify-items-center text-center">
+    <h1 className="text-4xl font-bold grid text-center">Sign Up For Puppy! 🐶</h1>
+    <div className="mt-5 grid justify-items-center">
     <label className="mt-5 w-80 text-lg font-semibold">Product Name</label>
-    <input onChange={(e)=>setName(e.target.value)} className="px-3 py-3 mt-5 placeholder-blueGray-300 text-blueGray-600 relative bg-white w-80 bg-white rounded text-sm border border-blueGray-300 outline-none focus:outline-none focus:ring" placeholder="Anteam"></input>
-    <label className="mt-5 w-80 text-lg font-semibold">Product URL (no https/www)</label>
-    <input onChange={(e)=>setURL(e.target.value)} className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white w-80 bg-white rounded text-sm border border-blueGray-300 outline-none focus:outline-none focus:ring mt-5" placeholder="anteam.com"></input>
-    <label className="mt-5 w-80 text-lg font-semibold">what does your product do? (core value proposition)</label>
-    <textarea onChange={(e)=>setq1(e.target.value)} className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border border-blueGray-300 outline-none focus:outline-none focus:ring mt-5 w-80 h-20" placeholder="Anteam helps founders by..."></textarea>
-    <label className="mt-5 w-80 text-lg font-semibold">what is your pricing model?</label>
-    <textarea onChange={(e)=>setq2(e.target.value)} className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border border-blueGray-300 outline-none focus:outline-none focus:ring mt-5 w-80" placeholder="we charge 10$/month for small companies and..."></textarea>
-    <label className="mt-5 w-80 text-lg font-semibold">how can users use your core product? (describe pages and features)</label>
+    <input onChange={(e)=>setName(e.target.value)} className="px-3 py-3 mt-2 placeholder-blueGray-300 text-blueGray-600 relative bg-white w-80 bg-white rounded text-sm border border-blueGray-300 outline-none focus:outline-none focus:ring" placeholder="Anteam"></input>
+
+    <label className="mt-5 w-80 text-lg font-semibold">Product URL</label>
+    <p className="text-sm text-gray-500 w-80 text-left">Don't include https/www</p>
+    <input onChange={(e)=>setURL(e.target.value)} className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white w-80 bg-white rounded text-sm border border-blueGray-300 outline-none focus:outline-none focus:ring mt-2" placeholder="anteam.com"></input>
+
+    <label className="mt-5 w-80 text-lg font-semibold">What does your product do?</label>
+    <p className="text-sm text-gray-500 w-80 text-left">What's your core value proposition?</p>
+    <textarea onChange={(e)=>setq1(e.target.value)} className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border border-blueGray-300 outline-none focus:outline-none focus:ring mt-2 w-80 h-20" placeholder="Anteam helps founders by..."></textarea>
+    
+    <label className="mt-5 w-80 text-lg font-semibold">What is your pricing model?</label>
+    <textarea onChange={(e)=>setq2(e.target.value)} className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border border-blueGray-300 outline-none focus:outline-none focus:ring mt-2 w-80" placeholder="We charge 10$/month for small companies and..."></textarea>
+
+    <label className="mt-5 w-80 text-lg font-semibold">How can users use your core product?</label>
+    <p className="text-sm text-gray-500 text-left">Describe your pages and features.</p>
     <button
         className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase mt-5 text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
         type="button"
@@ -84,11 +91,14 @@ const App = () => {
           <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
         </>
     ) : null}
-    <textarea onChange={(e)=>setq3(e.target.value)} className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border border-blueGray-300 outline-none focus:outline-none focus:ring mt-5 w-80" placeholder="user can create new interviews by clicking the 'create' button..."></textarea>
-    <label className="mt-5 w-80 text-lg font-semibold">how can someone sign up for your product?</label>
-    <textarea onChange={(e)=>setq4(e.target.value)} className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border border-blueGray-300 outline-none focus:outline-none focus:ring mt-5 w-80" placeholder="someone can sign up for our product by clicking the signup button on..."></textarea>
-    <label className="mt-5 w-80 text-lg font-semibold">who is the perfect user for your product?</label>
-    <textarea onChange={(e)=>setq5(e.target.value)} className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border border-blueGray-300 outline-none focus:outline-none focus:ring mt-5 w-80" placeholder="the perfect user for this product is a busy recruiter..."></textarea>
+    <textarea onChange={(e)=>setq3(e.target.value)} className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border border-blueGray-300 outline-none focus:outline-none focus:ring mt-5 w-80" placeholder="User can create new interviews by clicking the 'create' button..."></textarea>
+
+    <label className="mt-5 w-80 text-lg font-semibold">How can someone sign up for your product?</label>
+    <textarea onChange={(e)=>setq4(e.target.value)} className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border border-blueGray-300 outline-none focus:outline-none focus:ring mt-2 w-80" placeholder="Someone can sign up for our product by clicking the signup button on..."></textarea>
+
+    <label className="mt-5 w-80 text-lg font-semibold">Who is the perfect user for your product?</label>
+    <textarea onChange={(e)=>setq5(e.target.value)} className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border border-blueGray-300 outline-none focus:outline-none focus:ring mt-2 w-80" placeholder="The perfect user for this product is a busy recruiter..."></textarea>
+
     <button onClick={submit} className="mt-10 bg-blue-500 text-white active:bg-blue-600 font-bold uppercase mt-5 text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">Submit</button>
     </div>
     </div>
