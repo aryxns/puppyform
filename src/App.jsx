@@ -16,10 +16,10 @@ const App = () => {
     console.log(paragraph);
   }, [paragraph]);
   function submit(){
-    const db = firebase.firestore().collection("puppy").doc(url).set({
-      name: name,
-      paragraph:paragraph
-    });
+//     const db = firebase.firestore().collection("puppy").doc(url).set({
+//       name: name,
+//       paragraph:paragraph
+//     });
     setTimeout(()=>{window.location.href = "https://" + url}, 2000);
   }
   return(
