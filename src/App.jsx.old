@@ -1,0 +1,130 @@
+import React, { useState, useEffect, useCallback, useRef } from 'react'
+import styled from 'styled-components'
+import { getSimilarPosts } from './api'
+import Post from './Post'
+import { BehaviorSubject } from 'rxjs'
+
+const Wrapper = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+`
+const PostForm = styled.div`
+  flex: 1;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  grid-template-rows: 4em 2em 12em 4em;
+  grid-gap: 4px;
+  grid-template-areas:
+    ". a"
+    "b c"
+    "d e"
+    ". f";
+`
+const FormTitle = styled.div`
+  grid-area: a;
+`
+const TitleLabel = styled.div`
+  text-align: right;
+  grid-area: b;
+`
+const TitleInput = styled.div`
+  grid-area: c;
+  & input {
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    width: 100%;
+  }
+`
+const BodyLabel = styled.div`
+  text-align: right;
+  grid-area: d;
+`
+const BodyInput = styled.div`
+  grid-area: e;
+  & textarea {
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    font-family: inherit;
+    resize: none;
+  }
+`
+const FormControls = styled.div`
+  grid-area: f;
+  text-align: right;
+`
+
+const SuggestionList = styled.div`
+  width: 400px;
+  border-left: 1px solid #ccc;
+  padding: 16px;
+`
+const SuggestionTitle = styled.h2`
+`
+const Placeholder = styled.div`
+  color: #888;
+`
+const List = styled.div`
+  opacity: var(--o);
+`
+
+const subject$ = new BehaviorSubject('')
+
+const App = () => {
+  const [title, setTitle] = useState('')
+  const [body, setBody] = useState('')
+  const [suggestions, setSuggestions] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    const subscription = getSimilarPosts(subject$, setIsLoading).subscribe(
+      posts => {
+        console.log(posts)
+        setSuggestions(posts)
+        setIsLoading(false)
+      },
+      error => {
+        console.error('error getting similar posts', error)
+        setIsLoading(false)
+      }
+    )
+  }, [setSuggestions, setIsLoading])
+
+  useEffect(() => {
+    if(title.length === 0 && body.length === 0) setSuggestions([])
+    else subject$.next(`${title} ${body}`)
+  }, [title, body, setIsLoading, setSuggestions])
+
+  const handleTitleChange = useCallback(e => {
+    setTitle(e.target.value)
+  }, [setTitle])
+
+  const handleBodyChange = useCallback(e => {
+    setBody(e.target.value)
+  }, [setBody])
+
+  return <Wrapper>
+    <PostForm>
+      <FormTitle><h2>Create Post</h2></FormTitle>
+      <TitleLabel>Title</TitleLabel>
+      <TitleInput><input type="text" value={title} onChange={handleTitleChange} /></TitleInput>
+      <BodyLabel>Body</BodyLabel>
+      <BodyInput><textarea value={body} onChange={handleBodyChange} /></BodyInput>
+      <FormControls><button disabled>Submit</button></FormControls>
+    </PostForm>
+    <SuggestionList>
+      <SuggestionTitle>Similar Posts {isLoading && '(loading...)'}</SuggestionTitle>
+      {suggestions.length === 0 ?
+        <Placeholder>type to see suggestions</Placeholder> :
+        <List style={{ '--o': isLoading ? 0.5  : 1 }}>
+          {suggestions.map(post => <Post key={post.id} post={post} />)}
+        </List>
+      }
+    </SuggestionList>
+  </Wrapper>
+}
+
+export default App
