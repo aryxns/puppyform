@@ -16,15 +16,15 @@ const App = () => {
     console.log(paragraph);
   }, [paragraph]);
   function submit(){
-//     const db = firebase.firestore().collection("puppy").doc(url).set({
-//       name: name,
-//       paragraph:paragraph
-//     });
+    const db = firebase.firestore().collection("puppy").doc(url).set({
+      name: name,
+      paragraph:paragraph
+    });
     setTimeout(()=>{window.location.href = "https://" + url}, 2000);
   }
   return(
     <div className="m-10">
-    <h1 className="text-4xl font-bold grid text-center">Sign Up For Puppy! 🐶</h1>
+    <h1 className="text-4xl font-bold grid text-center">Sign up for Puppy! 🐶</h1>
     <div className="mt-5 grid justify-items-center">
     <label className="mt-5 w-80 text-lg font-semibold">Product Name</label>
     <input onChange={(e)=>setName(e.target.value)} className="px-3 py-3 mt-2 placeholder-blueGray-300 text-blueGray-600 relative bg-white w-80 bg-white rounded text-sm border border-blueGray-300 outline-none focus:outline-none focus:ring" placeholder="Anteam"></input>
@@ -36,17 +36,12 @@ const App = () => {
     <label className="mt-5 w-80 text-lg font-semibold">What does your product do?</label>
     <p className="text-sm text-gray-500 w-80 text-left">What's your core value proposition?</p>
     <textarea onChange={(e)=>setq1(e.target.value)} className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border border-blueGray-300 outline-none focus:outline-none focus:ring mt-2 w-80 h-20" placeholder="Anteam helps founders by..."></textarea>
-    
     <label className="mt-5 w-80 text-lg font-semibold">What is your pricing model?</label>
     <textarea onChange={(e)=>setq2(e.target.value)} className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border border-blueGray-300 outline-none focus:outline-none focus:ring mt-2 w-80" placeholder="We charge 10$/month for small companies and..."></textarea>
 
     <label className="mt-5 w-80 text-lg font-semibold">How can users use your core product?</label>
     <p className="text-sm text-gray-500 text-left">Describe your pages and features.</p>
-    <button
-        className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase mt-5 text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-        type="button"
-        onClick={() => setShow(true)}
-      >view Reference</button>
+    
     {show ? (
       <>
           <div
